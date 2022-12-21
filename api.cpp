@@ -17,10 +17,7 @@ MHD_Result handle_request(void *cls, struct MHD_Connection *connection,
     return MHD_NO;
   }
 
- 
-  
-
-  char buffer[] = "Hello, World!";
+   char buffer[] = "Hello, World!";
 
   response = MHD_create_response_from_buffer(strlen(buffer), buffer, MHD_RESPMEM_MUST_COPY);
   return MHD_queue_response(connection, MHD_HTTP_OK, response);
