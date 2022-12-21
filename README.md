@@ -10,12 +10,12 @@
 
 ## How to run
 
-> Install the `microhttpd` lib (`sudo apt install libmicrohttpd-dev`)
+Install the `microhttpd` lib (`sudo apt install libmicrohttpd-dev`)
 
-> Install `gcc` (`sudo apt install gcc`)
+Install `gcc` (`sudo apt install gcc`)
 
-> Run `gcc api.cpp -lmicrohttpd -o api` to compile the program
+Run `gcc api.cpp -lmicrohttpd -o api` to compile the program
 
-> Run `./api` to run the program
+Run `./api` to run the program
 
-> Open a browser and go to `http://localhost:8888` to see the result or just run `curl http://localhost:8888` to see the result in the terminal
+Open a browser and go to `http://localhost:8888` to see the result or just run `curl http://localhost:8888` to see the result in the terminal
