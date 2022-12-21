@@ -12,14 +12,45 @@ MHD_Result handle_request(void *cls, struct MHD_Connection *connection,
 {
   struct MHD_Response *response;
 
-  if (strcmp(method, "GET") != 0)
+  char method_not_allowed_response[] = "Method not allowed!";
+
+  if (strcmp(method, "GET") != 0 && strcmp(method, "POST") != 0 && strcmp(method, "PUT") != 0 && strcmp(method, "DELETE") != 0 && strcmp(method, "PATCH") != 0)
   {
+    response = MHD_create_response_from_buffer(strlen(method_not_allowed_response), method_not_allowed_response, MHD_RESPMEM_MUST_COPY);
     return MHD_NO;
   }
 
-   char buffer[] = "Hello, World!";
+  char get_response[] = "[GET] You made a GET request!";
+  char post_response[] = "[POST] You made a POST request!";
+  char put_response[] = "[PUT] You made a PUT request!";
+  char delete_response[] = "[DELETE] You made a DELETE request!";
+  char patch_response[] = "[PATCH] You made a PATCH request!";
 
-  response = MHD_create_response_from_buffer(strlen(buffer), buffer, MHD_RESPMEM_MUST_COPY);
+  if (strcmp(method, "GET") == 0)
+  {
+    response = MHD_create_response_from_buffer(strlen(get_response), get_response, MHD_RESPMEM_MUST_COPY);
+  }
+
+  if (strcmp(method, "POST") == 0)
+  {
+    response = MHD_create_response_from_buffer(strlen(post_response), post_response, MHD_RESPMEM_MUST_COPY);
+  }
+
+  if (strcmp(method, "PUT") == 0)
+  {
+    response = MHD_create_response_from_buffer(strlen(put_response), put_response, MHD_RESPMEM_MUST_COPY);
+  }
+
+  if (strcmp(method, "DELETE") == 0)
+  {
+    response = MHD_create_response_from_buffer(strlen(delete_response), delete_response, MHD_RESPMEM_MUST_COPY);
+  }
+
+  if (strcmp(method, "PATCH") == 0)
+  {
+    response = MHD_create_response_from_buffer(strlen(patch_response), patch_response, MHD_RESPMEM_MUST_COPY);
+  }
+
   return MHD_queue_response(connection, MHD_HTTP_OK, response);
   MHD_destroy_response(response);
 }

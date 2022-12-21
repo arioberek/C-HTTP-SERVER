@@ -1,21 +1,33 @@
-# C REST API
+# HTTP Server in C 💻
 
-#### This is a simple API written in C that returns "Hello, World!" when accessed via a GET request.
+This code is a C program that starts an HTTP server using the `microhttpd` library. The server listens for incoming HTTP requests on port 8888.
 
-> The API uses the Micro HTTP Daemon (MHD) library to handle the HTTP request and response.
+## Request Handling 📮
 
-> The main function starts a daemon using MHD_start_daemon and sets the request handler function to handle_request. The handle_request function is called for each incoming request and checks that the request method is a GET request.
+When a request is received, the server calls the `handle_request` function to process the request. The `handle_request` function first checks the method of the request (e.g. GET, POST, PUT, DELETE, PATCH). If the method is not one of these five, the server returns a "Method not allowed!" response.
 
-> If it is, it creates a response with a "Hello, World!" message and sends it back to the client. If the request method is not a GET, the function returns MHD_NO to indicate that it cannot handle the request. The API runs on port 8888 and prints a message to the console indicating that the server is running. The server will continue to run until the user enters a character, at which point the daemon is stopped and the program terminates.
+If the method is allowed, the server creates a response based on the method. For example, if the method is GET, the server creates a response containing the text "[GET] You made a GET request!". The server then sends the response back to the client with a status code of 200 (OK).
 
-## How to run
+## Getting started 🚀
 
-- Install the `microhttpd` lib (`sudo apt install libmicrohttpd-dev`)
+- If you just want to run the already compiled version of the program, you can run `./api` in the terminal.
 
-- Install `gcc` (`sudo apt install gcc`)
+1. First, install the microhttpd library by running `sudo apt install libmicrohttpd-dev` in your terminal.
 
-- Run `gcc api.cpp -lmicrohttpd -o api` to compile the program
+2. Next, install gcc by running `sudo apt install gcc`.
 
-- Run `./api` to run the program
+3. Use gcc to compile the program by running `gcc api.cpp -lmicrohttpd -o api`.
 
-- Open a browser and go to `http://localhost:8888` to see the result or just run `curl http://localhost:8888` to see the result in the terminal
+4. Run the program by entering `./api` in the terminal.
+
+5. To see the result of the GET request, open a web browser and navigate to http://localhost:8888, or use curl to see the result in the terminal by running curl http://localhost:8888.
+
+6. To see the result of POST, PUT, DELETE, and PATCH requests, use curl to send the request to the server. For example, to send a POST request, run `curl -X POST http://localhost:8888` (or use some tool like Postman or Insomnia).
+
+## License 📜
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments 🙏
+
+- [microhttpd](https://www.gnu.org/software/libmicrohttpd/) - The HTTP server library used
